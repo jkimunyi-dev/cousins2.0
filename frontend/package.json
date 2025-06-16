@@ -1,0 +1,17 @@
+{
+  "name": "cousins-frontend",
+  "version": "1.0.0",
+  "description": "Cousins application frontend with authentication routing",
+  "main": "index.html",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch & live-server --port=3000",
+    "serve": "live-server --port=3000",
+    "tsc:watch": "tsc --watch"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "live-server": "^1.2.2"
+  },
+  "type": "module"
+}
