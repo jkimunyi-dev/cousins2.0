@@ -1,0 +1,562 @@
+### Variables
+@baseUrl = http://localhost:3000
+@adminToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impra2ltdW55aUBnbWFpbC5jb20iLCJzdWIiOiJjbWJ5NWsxOWUwMDAwOXowYmkycDR1MjJpIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzUwMTA5MzA2LCJleHAiOjE3NTA3MTQxMDZ9.O91Zu0SSGnDeJI-r77b9ifn9LUKPvwrcB8QsvIVRDFs
+@userToken = 
+@projectId = 
+@userId = cmby576cw00009zy383twu2ur
+@user2Id = cmby5x4bw00019z0b3bs9s6qp
+@user3Id = cmby9prwf00029z0b6nhyad1s
+@user4Id = cmby9ybwf00039z0bf5idrzz0
+@user5Id = cmbylzdx400009z1bdxkpotqx
+@user6Id = cmbylztt100019z1btaf6f0l8
+@user7Id = cmc0axuhk0000itktl2xtnij9
+@project1Id = cmbym07i900029z1bh0hip0qe
+@project2Id = cmbym0rhs00039z1bhbm0jqyb
+@project3Id = cmbym1kl000059z1b0isg9dys
+@project4Id = cmbzk77bh00009znv9d56jxgh
+@project5Id = cmbzkhf9400019znvyuz3nj23
+@project6Id = cmbym170b00049z1b33426gyc
+@project7Id = cmbzk77bh00009znv9d56jxgh
+
+### Health Check
+GET {{baseUrl}}
+
+### ==================== GET FRESH TOKENS ====================
+
+### Login as Admin - Copy token to @adminToken
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "jkkimunyi@gmail.com",
+  "password": "admin123"
+}
+
+### Login as User (John) - Copy token to @userToken
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+
+### ==================== SETUP - CREATE 7 USERS ====================
+
+### User 2 - Jane Smith
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "Jane Smith",
+  "email": "jane@example.com",
+  "password": "password123"
+}
+
+### User 3 - Alice Johnson
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "Alice Johnson",
+  "email": "alice@example.com",
+  "password": "password123"
+}
+
+### User 4 - Bob Wilson
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "Bob Wilson",
+  "email": "bob@example.com",
+  "password": "password123"
+}
+
+### User 5 - Charlie Brown
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "Charlie Brown",
+  "email": "charlie@example.com",
+  "password": "password123"
+}
+
+### User 6 - Diana Prince
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "Diana Prince",
+  "email": "diana@example.com",
+  "password": "password123"
+}
+
+### User 7 - Eve Adams
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "Eve Adams",
+  "email": "eve@example.com",
+  "password": "password123"
+}
+
+### ==================== CREATE 7 PROJECTS ====================
+
+### Project 1 - E-commerce Website
+POST {{baseUrl}}/projects
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "name": "E-commerce Website",
+  "description": "Build a full-featured e-commerce website with payment integration",
+  "endDate": "2024-12-31T23:59:59.000Z"
+}
+
+### Project 2 - Mobile App Development
+POST {{baseUrl}}/projects
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "name": "Mobile App Development",
+  "description": "Develop a cross-platform mobile application using React Native",
+  "endDate": "2024-11-30T23:59:59.000Z"
+}
+
+### Project 3 - Data Analytics Dashboard
+POST {{baseUrl}}/projects
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "name": "Data Analytics Dashboard",
+  "description": "Create a comprehensive data visualization dashboard using D3.js",
+  "endDate": "2024-10-15T23:59:59.000Z"
+}
+
+### Project 4 - AI Chatbot
+POST {{baseUrl}}/projects
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "name": "AI Chatbot",
+  "description": "Develop an intelligent chatbot using NLP and machine learning",
+  "endDate": "2024-09-30T23:59:59.000Z"
+}
+
+### Project 5 - Blockchain Wallet
+POST {{baseUrl}}/projects
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "name": "Blockchain Wallet",
+  "description": "Build a secure cryptocurrency wallet application",
+  "endDate": "2024-08-31T23:59:59.000Z"
+}
+
+### Project 6 - IoT Smart Home System
+POST {{baseUrl}}/projects
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "name": "IoT Smart Home System",
+  "description": "Create an integrated smart home automation system",
+  "endDate": "2024-07-31T23:59:59.000Z"
+}
+
+### Project 7 - Social Media Platform
+POST {{baseUrl}}/projects
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "name": "Social Media Platform",
+  "description": "Develop a modern social networking platform with real-time features",
+  "endDate": "2024-06-30T23:59:59.000Z"
+}
+
+### ==================== GET ALL USERS (Copy IDs) ====================
+
+### Get all users - Copy user IDs from response
+GET {{baseUrl}}/users
+Authorization: Bearer {{adminToken}}
+
+### Get all projects - Copy project IDs from response
+GET {{baseUrl}}/projects
+Authorization: Bearer {{adminToken}}
+
+### ==================== ASSIGN PROJECTS TO USERS ====================
+
+### Assign Project 1 to User 1 (John)
+POST {{baseUrl}}/projects/{{project1Id}}/assign
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "userId": "{{userId}}"
+}
+
+### Assign Project 2 to User 2 (Jane)
+POST {{baseUrl}}/projects/{{project2Id}}/assign
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "userId": "{{user2Id}}"
+}
+
+### Assign Project 3 to User 3 (Alice)
+POST {{baseUrl}}/projects/{{project3Id}}/assign
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "userId": "{{user3Id}}"
+}
+
+### Assign Project 4 to User 4 (Bob)
+POST {{baseUrl}}/projects/{{project4Id}}/assign
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "userId": "{{user4Id}}"
+}
+
+### Assign Project 5 to User 5 (Charlie)
+POST {{baseUrl}}/projects/{{project5Id}}/assign
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "userId": "{{user5Id}}"
+}
+
+### Assign Project 6 to User 6 (Diana)
+POST {{baseUrl}}/projects/{{project6Id}}/assign
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "userId": "{{user6Id}}"
+}
+
+### Assign Project 7 to User 7 (Eve)
+POST {{baseUrl}}/projects/{{project7Id}}/assign
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "userId": "{{user7Id}}"
+}
+
+### ==================== AUTH ENDPOINTS TESTING ====================
+
+### Login as Admin
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "jkkimunyi@gmail.com",
+  "password": "admin123"
+}
+
+### Login as User 2 (Jane)
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "jane@example.com",
+  "password": "password123"
+}
+
+### Login as User 3 (Alice)
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "alice@example.com",
+  "password": "password123"
+}
+
+### ==================== USER ENDPOINTS TESTING ====================
+
+### Get all users (Admin only)
+GET {{baseUrl}}/users
+Authorization: Bearer {{adminToken}}
+
+### Get users without projects (Admin only)
+GET {{baseUrl}}/users/without-projects
+Authorization: Bearer {{adminToken}}
+
+### Get current user profile (User)
+GET {{baseUrl}}/users/me
+Authorization: Bearer {{userToken}}
+
+### Get specific user by ID (Admin only)
+GET {{baseUrl}}/users/{{userId}}
+Authorization: Bearer {{adminToken}}
+
+### Update user (Admin only)
+PATCH {{baseUrl}}/users/{{userId}}
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "name": "John Doe Updated"
+}
+
+### ==================== PROJECT ENDPOINTS TESTING ====================
+
+### Get all projects (Admin only)
+GET {{baseUrl}}/projects
+Authorization: Bearer {{adminToken}}
+
+### Get unassigned projects (Admin only)
+GET {{baseUrl}}/projects/unassigned
+Authorization: Bearer {{adminToken}}
+
+### Get my assigned project (User)
+GET {{baseUrl}}/projects/my-project
+Authorization: Bearer {{userToken}}
+
+### Get specific project by ID
+GET {{baseUrl}}/projects/{{project1Id}}
+Authorization: Bearer {{adminToken}}
+
+### Update project (Admin only)
+PATCH {{baseUrl}}/projects/{{project1Id}}
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "name": "Updated E-commerce Website",
+  "description": "Enhanced e-commerce website with advanced features and admin panel"
+}
+
+### Unassign project (Admin only)
+POST {{baseUrl}}/projects/{{project7Id}}/unassign
+Authorization: Bearer {{adminToken}}
+
+### Mark project as completed (User)
+POST {{baseUrl}}/projects/{{project1Id}}/complete
+Authorization: Bearer {{userToken}}
+
+### ==================== COMPREHENSIVE ERROR TESTING ====================
+
+### Try to access admin endpoint without token
+GET {{baseUrl}}/users
+
+### Try to access admin endpoint with user token
+GET {{baseUrl}}/users
+Authorization: Bearer {{userToken}}
+
+### Try to register with existing email
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "Test User",
+  "email": "john@example.com",
+  "password": "password123"
+}
+
+### Try to login with wrong credentials
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "john@example.com",
+  "password": "wrongpassword"
+}
+
+### Try to create project with invalid data
+POST {{baseUrl}}/projects
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "name": "",
+  "description": "Test description"
+}
+
+### Try to assign project to non-existent user
+POST {{baseUrl}}/projects/{{project1Id}}/assign
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "userId": "non-existent-user-id"
+}
+
+### Try to assign already assigned project
+POST {{baseUrl}}/projects/{{project1Id}}/assign
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "userId": "{{user2Id}}"
+}
+
+### Try to complete project that's not assigned to you
+POST {{baseUrl}}/projects/{{project2Id}}/complete
+Authorization: Bearer {{userToken}}
+
+### Try to access non-existent project
+GET {{baseUrl}}/projects/non-existent-id
+Authorization: Bearer {{adminToken}}
+
+### Try to update user without admin privileges
+PATCH {{baseUrl}}/users/{{userId}}
+Content-Type: application/json
+Authorization: Bearer {{userToken}}
+
+{
+  "name": "Unauthorized Update"
+}
+
+### Try to delete user without admin privileges
+DELETE {{baseUrl}}/users/{{userId}}
+Authorization: Bearer {{userToken}}
+
+### Try to create project without admin privileges
+POST {{baseUrl}}/projects
+Content-Type: application/json
+Authorization: Bearer {{userToken}}
+
+{
+  "name": "Unauthorized Project",
+  "description": "This should fail",
+  "endDate": "2024-12-31T23:59:59.000Z"
+}
+
+### ==================== ADDITIONAL FUNCTIONALITY TESTS ====================
+
+### Test project assignment edge cases
+POST {{baseUrl}}/projects/{{project2Id}}/assign
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "userId": "{{user2Id}}"
+}
+
+### Test user profile access with different users
+GET {{baseUrl}}/users/me
+Authorization: Bearer {{userToken}}
+
+### Test project completion workflow
+POST {{baseUrl}}/projects/{{project3Id}}/complete
+Authorization: Bearer {{userToken}}
+
+### Clean up - Delete a user (Admin only)
+DELETE {{baseUrl}}/users/cmc0cbn5p0000it8l3m77yqxk
+Authorization: Bearer {{adminToken}}
+
+### Clean up - Delete a project (Admin only)
+DELETE {{baseUrl}}/projects/{{project1Id}}
+Authorization: Bearer {{adminToken}}
+
+### ==================== FINAL VERIFICATION ====================
+
+### Verify final state - Get all users
+GET {{baseUrl}}/users
+Authorization: Bearer {{adminToken}}
+
+### Verify final state - Get all projects
+GET {{baseUrl}}/projects
+Authorization: Bearer {{adminToken}}
+
+### Verify users without projects
+GET {{baseUrl}}/users/without-projects
+Authorization: Bearer {{adminToken}}
+
+### Verify unassigned projects
+GET {{baseUrl}}/projects/unassigned
+Authorization: Bearer {{adminToken}}
+
+### Test Welcome Email Functionality
+POST http://localhost:3000/mail/test-welcome
+Content-Type: application/json
+
+{
+  "newUser": {
+    "name": "John Doe",
+    "email": "kimunyijimmy@gmail.com",
+    "role": "USER",
+    "id": 1
+  },
+  "adminEmails": [
+    "jkkimunyi@gmail.com",
+  ]
+}
+
+###
+
+### Test Project Assignment Email
+POST http://localhost:3000/mail/test-project-assignment
+Content-Type: application/json
+
+{
+  "userEmail": "user@example.com",
+  "userName": "Test User",
+  "project": {
+    "name": "Sample Project",
+    "description": "This is a test project for email functionality",
+    "endDate": "2025-07-15T00:00:00.000Z"
+  }
+}
+
+###
+
+### Test Project Completion Email
+POST http://localhost:3000/mail/test-project-completion
+Content-Type: application/json
+
+{
+  "adminEmail": "admin@example.com",
+  "project": {
+    "name": "Completed Project",
+    "description": "This project has been completed",
+    "endDate": "2025-06-30T00:00:00.000Z"
+  },
+  "user": {
+    "name": "Test User",
+    "email": "user@example.com"
+  }
+}
+
+/jimmie/github/cousins/backend/test.http
+// ...existing code...
+
+### ==================== EMAIL INTEGRATION TESTING ====================
+
+### Test New User Registration with Email Integration
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "Kimunyi Jimmy",
+  "email": "eb14.55919.21@student.chuka.ac.ke",
+  "password": "jimmy123"
+}
+
+### Verify the new user was created
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "eb14.55919.21@student.chuka.ac.ke",
+  "password": "jimmy123"
+}
+
+### Get all users to verify new user exists (Admin only)
+GET {{baseUrl}}/users
+Authorization: Bearer {{adminToken}}
